@@ -4,12 +4,14 @@ var axios = require("axios");
 var moment = require("moment");
 var keys = require("./keys")
 var Spotify = require('node-spotify-api');
+var Omdb = require('omdb');
 
 var spotify = new Spotify(keys.spotify);
 
 var keys = require("./keys.js")
 var action = process.argv[2];
 var search = process.argv.slice(3).join(" ");
+var movie = process.argv[2];
 
 switch (action) {
     case "concert-this":
@@ -19,7 +21,7 @@ switch (action) {
         spotifyThis(search)
         break;
     case "movie-this":
-
+        movieThis(search);
         break;
     default:
         break;
@@ -43,14 +45,28 @@ function spotifyThis(song) {
         console.log("Preview link: ", data.tracks.items[0].preview_url);
         console.log("Albums Name: ", data.tracks.items[0].album.name);
     });
-    function movieThis(movie) {
-        axios.get("http://www.omdbapi.com/?t=remember+the+titans&y=&plot=short&apikey=trilogy").then(
-            function (response) {
-                console.log("The movie's rating is: " + response.data.imdbRating);
-            }
-        )
-    }
+
 }
+
+
+function movieThis(movie) {
+
+    var queryUrl = `http://www.omdbapi.com/?t=${movie}&apikey=aa0539ef`;
+
+    console.log(queryUrl);
+    axios.get(queryUrl).then(
+        function (response) {
+            console.log("The movie title is: ", response.data.Title);
+            console.log("The movie premiered in: ", response.data.Year);
+            console.log("The IMDB rating is: ", response.data.imdbRating);
+            console.log("The movie was filmed in: ", response.data.Country);
+            console.log("The primary language(s): ", response.data.Language);
+            console.log("The plot for is as follows: ", response.data.Plot);
+        
+        }
+    )
+}
+
 
 
 
