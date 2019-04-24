@@ -1,6 +1,7 @@
 # liri-node-app
 Language Interpretation and Recognition Interface homework assignment
 
+Images showing working application:
 1. https://github.com/rcarver515/liri-node-app/tree/master/images/liriImage1.PNG
 2. https://github.com/rcarver515/liri-node-app/tree/master/images/liriImage2.PNG
 3. https://github.com/rcarver515/liri-node-app/tree/master/images/liriImage3.PNG
